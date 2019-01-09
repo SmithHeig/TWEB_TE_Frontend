@@ -24,24 +24,8 @@ const styles = theme => ({
   root: {
     paddingTop: '64px',
   },
-  appBar: {
-    position: 'absolute',
-    zIndex: 1900,
-    [theme.breakpoints.up('md')]: {
-      width: '100%',
-    },
-  },
-  navIconHide: {
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth,
-    [theme.breakpoints.up('md')]: {
-      position: 'relative',
-    },
+  page: {
+    paddingTop: 70,
   },
   content: {
     flexGrow: 1,
@@ -72,7 +56,7 @@ class App extends React.Component {
           <Switch>
             <Route path="/" exact component={PageAcceuil} />
             <Route path="/login" component={PageLogin} />
-            <ProtectedRoute path="/welcome" exact component={PageWelcom} />
+            <Route path="/welcome" exact component={PageWelcom} />
             <Route path="*" component={PageError404} />
           </Switch>
         </div>

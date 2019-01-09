@@ -26,7 +26,7 @@ require('dotenv').config();
 const api = process.env.API_GRAPHQL;
 
 const httpLink = createHttpLink({
-  uri: api,
+  uri: 'https://tweb-2019-api-jerem.herokuapp.com/graphql',
 });
 
 

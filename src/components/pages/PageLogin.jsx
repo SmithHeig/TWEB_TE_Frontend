@@ -71,7 +71,7 @@ class PageLogin extends React.Component {
   }
 
   render() {
-    const { classes, onClose, onClick2 } = this.props;
+    const { classes, onClick2 } = this.props;
     return (
       <AuthContext>
         {({ error, signIn }) => {
@@ -118,16 +118,6 @@ class PageLogin extends React.Component {
                         autoComplete="current-password"
                       />
                     </FormControl>
-                    <FormControlLabel
-                      control={(
-                        <Checkbox
-                          color="primary"
-                          value="remember"
-                        />
-                      )}
-                      label="remember"
-                    />
-
                     {error === ''
                       ? (
                         <br />
@@ -156,15 +146,6 @@ class PageLogin extends React.Component {
                       onClick={onClick2}
                     >
                       {'Créer un nouveau compte'}
-                    </Button>
-                    <Button
-                      fullWidth
-                      variant="contained"
-                      color="primary"
-                      className={classes.submit}
-                      onClick={onClose}
-                    >
-                      {'Fermer'}
                     </Button>
                   </form>
                 </Paper>
