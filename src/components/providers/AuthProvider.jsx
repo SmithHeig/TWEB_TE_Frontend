@@ -43,49 +43,18 @@ class AuthProvider extends React.Component {
     }
   }
 
-  executeLogin = (email, password) => {
-    const { client } = this.props;
-
-    return client.mutate({ mutation: mutLogin, variables: { email, password } }).then(
-      (data) => {
-        console.info(data.data.login.token);
-        return data.login.token;
-      }
-    ).catch(error => {
-      console.log(error);
-      return null;
+  signIn = ({ userMail, password }) => {
+    this.setState({
+      userID: null,
+      userMail: null,
+      userToken: null,
+      error: '',
     });
   }
 
-  signIn = async ({ userMail, password }) => {
-    const tmpToken = await this.executeLogin(userMail, password);
-
-    if (tmpToken === null) {
-      this.setState({
-        error: 'Email ou mot de passe invalide.',
-      });
-    } else {
-      const payload = tmpToken.substring(
-        tmpToken.indexOf('.') + 1,
-        tmpToken.lastIndexOf('.')
-      );
-  
-      const objJsonB64 = Buffer.from(payload).toString("base64");
-      console.info(objJsonB64);
-
-      this.setState({
-        userID: null,
-        userMail: null,
-        userToken: null,
-        error: '',
-      });
-
-      window.localStorage.setItem('token', tmpToken);
-    }
-  }
-
   signOut = () => {
-    
+    localStorage.removeItem('token');
+    window.location.reload();
   }
 
   render() {

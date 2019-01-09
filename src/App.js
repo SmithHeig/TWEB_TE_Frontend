@@ -5,12 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Header from './components/Header';
 
@@ -21,7 +16,7 @@ import {
   PageWelcom,
 } from './components/pages/Pages';
 
-import AuthContext from './components/providers/AuthProvider';
+import { AuthContext } from './components/providers/AuthProvider';
 
 const drawerWidth = 400;
 
@@ -55,17 +50,16 @@ const styles = theme => ({
   },
 });
 
-const ProtectedRoute = ({ Component: Component, ...rest }) => (
+const ProtectedRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(params) => (
     <AuthContext>
-      {({ userToken }) => !userToken
+      {({ userMail }) => userMail
         ? <Component {...params} />
         : <Redirect to="/login" />}
     </AuthContext>
   )}
   />
-);
-
+)
 
 class App extends React.Component {
   render() {
@@ -76,7 +70,7 @@ class App extends React.Component {
         <Header />
         <div className={classes.page} center="xs">
           <Switch>
-            <ProtectedRoute path="/" exact component={PageAcceuil} />
+            <Route path="/" exact component={PageAcceuil} />
             <Route path="/login" component={PageLogin} />
             <ProtectedRoute path="/welcome" exact component={PageWelcom} />
             <Route path="*" component={PageError404} />

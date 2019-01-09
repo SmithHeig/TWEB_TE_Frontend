@@ -6,7 +6,6 @@ import CenteredPaper from '../items/CenteredPaper';
 
 const styles = {
   paper: {
-
     backgroundColor: 'rgba(255, 10, 0, 1)',
   },
 };
@@ -18,7 +17,7 @@ class PageAcceuil extends Component {
   }
 
   render() {
-    const { classes, location } = this.props;
+    const { classes } = this.props;
     return (
       <CenteredPaper className={classes.paper}>
         <Typography variant="h3" color="secondary">This is acceuil page</Typography>
