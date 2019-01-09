@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-import CenteredPaper from '../components/items/CenteredPaper';
+import CenteredPaper from '../items/CenteredPaper';
 
 const styles = {
   paper: {
@@ -11,7 +11,7 @@ const styles = {
   },
 };
 
-class PageAcceuil extends Component {
+class PageError404 extends Component {
   constructor(props) {
     super(props);
     document.title = 'Error 404';
@@ -32,4 +32,4 @@ class PageAcceuil extends Component {
   }
 }
 
-export default withStyles(styles)(PageAcceuil);
+export default withStyles(styles)(PageError404);

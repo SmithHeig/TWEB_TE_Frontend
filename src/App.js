@@ -3,26 +3,25 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 
-import './App.css';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 import {
   BrowserRouter as Router,
   Route,
   Switch,
+  Redirect,
 } from 'react-router-dom';
 
 import Header from './components/Header';
-import Theme from './components/Theme';
-import ProducerVue from './components/ProducerVue';
 
 import {
   PageAcceuil,
   PageError404,
   PageLogin,
   PageWelcom,
-} from './pages/Pages';
+} from './components/pages/Pages';
 
+import AuthContext from './components/providers/AuthProvider';
 
 const drawerWidth = 400;
 
@@ -56,27 +55,19 @@ const styles = theme => ({
   },
 });
 
-const ProtectedRoute = ({ Component: Component, ...rest }) => {
+const ProtectedRoute = ({ Component: Component, ...rest }) => (
   <Route {...rest} render={(params) => (
     <AuthContext>
-      {({ userToken }) => userToken
+      {({ userToken }) => !userToken
         ? <Component {...params} />
-        : <Redirect to="/" />}
+        : <Redirect to="/login" />}
     </AuthContext>
   )}
   />
-)
+);
 
 
 class App extends React.Component {
-  state = {
-    mobileOpen: false,
-  };
-
-  handleDrawerToggle = () => {
-    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
-  };
-
   render() {
     const { classes, theme } = this.props;
 
@@ -85,8 +76,8 @@ class App extends React.Component {
         <Header />
         <div className={classes.page} center="xs">
           <Switch>
-            <Route path="/" exact component={PageAcceuil} />
-            <Route path="/login" exact component={PageLogin} />
+            <ProtectedRoute path="/" exact component={PageAcceuil} />
+            <Route path="/login" component={PageLogin} />
             <ProtectedRoute path="/welcome" exact component={PageWelcom} />
             <Route path="*" component={PageError404} />
           </Switch>

@@ -20,5 +20,6 @@ module.exports = {
       'react/jsx-filename-extension'   : 'off',
       'no-return-assign'               : 'off',
       'no-undef'                       : 'off',
+      'forbid-prop-types'              : 'off',
     }
 };

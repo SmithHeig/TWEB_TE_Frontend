@@ -74,9 +74,9 @@ class AuthProvider extends React.Component {
       console.info(objJsonB64);
 
       this.setState({
-        userMail: userMail,
-        userStatus: 'admin',
-        userToken: tmpToken,
+        userID: null,
+        userMail: null,
+        userToken: null,
         error: '',
       });
 

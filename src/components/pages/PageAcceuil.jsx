@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-import CenteredPaper from '../components/items/CenteredPaper';
+import CenteredPaper from '../items/CenteredPaper';
 
 const styles = {
   paper: {
@@ -11,7 +11,7 @@ const styles = {
   },
 };
 
-class PageError404 extends Component {
+class PageAcceuil extends Component {
   constructor(props) {
     super(props);
     document.title = 'Error 404';
@@ -21,15 +21,10 @@ class PageError404 extends Component {
     const { classes, location } = this.props;
     return (
       <CenteredPaper className={classes.paper}>
-        <Typography variant="h3" color="secondary">Error404: Page NotFound. </Typography>
-        <Typography variant="h6" color="primary">
-          {'No match for: '}
-          {location.pathname}
-          {' '}
-        </Typography>
+        <Typography variant="h3" color="secondary">This is acceuil page</Typography>
       </CenteredPaper>
     );
   }
 }
 
-export default withStyles(styles)(PageError404);
+export default withStyles(styles)(PageAcceuil);
