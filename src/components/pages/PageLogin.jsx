@@ -29,7 +29,6 @@ const styles = theme => ({
     },
   },
   paper: {
-
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -52,6 +51,9 @@ const styles = theme => ({
   },
 });
 
+/**
+ * Page of login
+ */
 class PageLogin extends React.Component {
 
   constructor(props) {

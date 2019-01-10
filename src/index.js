@@ -26,7 +26,7 @@ import * as serviceWorker from './serviceWorker';
 //const api = process.env.API_GRAPHQL;
 
 const httpLink = createHttpLink({
-  uri: 'https://tweb-2019-api-jerem.herokuapp.com/graphql',
+  uri: 'http://localhost:3030/graphql',
 });
 
 

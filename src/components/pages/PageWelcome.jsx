@@ -12,7 +12,9 @@ const styles = {
   },
 };
 
-
+/**
+ * Query to get users id
+ */
 const query = gql`
 {
   users{
@@ -21,8 +23,16 @@ const query = gql`
 }
 `;
 
+/**
+ * Change data structure from list of object to list of id
+ * @param data
+ * @returns {*} - list of ids
+ */
 const creatUserRows = data => data.map(u => [u.id]);
 
+/**
+ * Page Welcome
+ */
 class PageWelcome extends Component {
   constructor(props) {
     super(props);

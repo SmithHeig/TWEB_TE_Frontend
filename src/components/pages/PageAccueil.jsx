@@ -10,7 +10,7 @@ const styles = {
   },
 };
 
-class PageAcceuil extends Component {
+class PageAccueil extends Component {
   constructor(props) {
     super(props);
     document.title = 'Error 404';
@@ -20,10 +20,10 @@ class PageAcceuil extends Component {
     const { classes } = this.props;
     return (
       <CenteredPaper className={classes.paper}>
-        <Typography variant="h3" color="secondary">This is acceuil page</Typography>
+        <Typography variant="h3" color="secondary">This is the home page</Typography>
       </CenteredPaper>
     );
   }
 }
 
-export default withStyles(styles)(PageAcceuil);
+export default withStyles(styles)(PageAccueil);

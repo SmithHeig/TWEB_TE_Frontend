@@ -11,6 +11,9 @@ const styles = {
   },
 };
 
+/**
+ * Page to show error when page not found
+ */
 class PageError404 extends Component {
   constructor(props) {
     super(props);
