@@ -20,13 +20,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-
-//require('dotenv').config();
-
-//const api = process.env.API_GRAPHQL;
-
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3030/graphql',
+  uri: 'https://te-tweb-api.herokuapp.com/graphql',
 });
 
 
