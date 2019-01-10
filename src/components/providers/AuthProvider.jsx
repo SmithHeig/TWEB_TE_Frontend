@@ -7,7 +7,7 @@ import { withApollo } from 'react-apollo';
 import { Route } from 'react-router-dom';
 
 // Pour décoder le token
-var jwtDecode = require('jwt-decode');
+const jwtDecode = require('jwt-decode');
 
 const {
   Provider: AuthContextProvider,
@@ -67,7 +67,7 @@ class AuthProvider extends React.Component {
     const token = window.localStorage.getItem('token');
     if (token) {
       const { client } = this.props;
-      client.query({ query: queryMe, variables: { token: token } }).then(
+      client.query({ query: queryMe, variables: { token } }).then(
         (data) => {
           console.log(data);
           const { id, email } = data.data.me;
@@ -78,8 +78,8 @@ class AuthProvider extends React.Component {
             error: null,
           });
         }
-      ).catch(error => {
-        console.error("Did not recover old session");
+      ).catch((error) => {
+        console.error('Did not recover old session');
       });
     }
   }
@@ -89,7 +89,7 @@ class AuthProvider extends React.Component {
    */
   signIn = (userEmail, password) => {
     const { client } = this.props;
-    client.mutate({ mutation: mutLogin, variables: { email: userEmail, password: password } }).then(
+    client.mutate({ mutation: mutLogin, variables: { email: userEmail, password } }).then(
       (data) => {
         console.log(data.data.login);
         const { token } = data.data.login;
@@ -99,7 +99,7 @@ class AuthProvider extends React.Component {
           userMail: email,
           userToken: token,
           error: null,
-        })
+        });
         console.log(token);
         window.localStorage.setItem('token', token);
       }
