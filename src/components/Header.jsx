@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 
+import { AuthContext } from './providers/AuthProvider';
 
 const styles = {
   root: {
@@ -39,7 +40,25 @@ function MenuAppBar(props) {
     <>
       <Link to="/" className={classes.LinkButton} readOnly tabIndex="-1"><Button id="accueilButton">Accueil</Button></Link>
       <Link to="/welcome" className={classes.LinkButton} readOnly tabIndex="-1"><Button id="mapButton">welcome</Button></Link>
-      <Link to="/login" className={classes.LinkButton} readOnly tabIndex="-1"><Button id="aboutButton">login</Button></Link>
+      <AuthContext>
+        {({ userMail, signOut }) => {
+          const onClick = (event) => {
+            event.preventDefault();
+            signOut();
+          };
+
+
+          return (
+            <>
+              {userMail ? (
+                <Button id="logoutButon" onClick={onClick} type="button">logOut</Button>
+              ) : (
+                <Link to="/login" className={classes.LinkButton} readOnly tabIndex="-1"><Button id="aboutButton">login</Button></Link>
+              )}
+            </>
+          )
+        }}
+      </AuthContext>
     </>
   );
 

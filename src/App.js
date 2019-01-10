@@ -53,7 +53,7 @@ class App extends React.Component {
           <Switch>
             <Route path="/" exact component={PageAcceuil} />
             <Route path="/login" component={PageLogin} />
-            <Route path="/welcome" exact component={PageWelcom} />
+            <ProtectedRoute path="/welcome" exact component={PageWelcom} />
             <Route path="*" component={PageError404} />
           </Switch>
         </div>

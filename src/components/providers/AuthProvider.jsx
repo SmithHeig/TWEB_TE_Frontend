@@ -6,6 +6,9 @@ import gql from 'graphql-tag';
 import { withApollo } from 'react-apollo';
 import { Route } from 'react-router-dom';
 
+// Pour décoder le token
+var jwtDecode = require('jwt-decode');
+
 const {
   Provider: AuthContextProvider,
   Consumer: AuthContext,
@@ -35,6 +38,7 @@ class AuthProvider extends React.Component {
     };
   }
 
+  // TODO
   componentDidMount() {
     const token = window.localStorage.getItem('token');
     if (token) {
@@ -42,39 +46,33 @@ class AuthProvider extends React.Component {
     }
   }
 
-
-
-
+  /**
+   * Permet de se loguer et de récupérer le token de l'utilisateur
+   */
   signIn = ( userEmail, password ) => {
     const { client } = this.props;
-    console.info("mon")
-    console.info(password);
-    client.mutate({ mutation: mutLogin, variables: { email: userEmail, password: password } })
-      .then(({ data }) => {
-        console.log('got data', data);
-      }).catch((error) => {
-        console.log('there was an error sending the query', error);
-      });
-
-    /*
-    client.mutate({ mutation: mutLogin, variables: { email, password } }).then(
+    client.mutate({ mutation: mutLogin, variables: {  email: userEmail, password: password} }).then(
       (data) => {
-        const errors = null;
-        if (errors) {
-          console.log(errors)
-          this.setState({ error: 'Oups an error occured. Please check the consoleeee' });
-          return;
-        }
-        console.info(data);
+        const { token } = data.data.login.token;
+        const decoded = jwtDecode(data.data.login.token);
+        this.setState({
+          userID: decoded.id,
+          userMail: decoded.email,
+          userToken: token,
+
+          error: null,
+        });
       }
 
     ).catch(error => {
-      console.log(client);
       console.log(error);
-      this.setState({ error: 'Oups an error occured. Please check the console' });
-    }); */
+      this.setState({ error: 'Wrong credentials' });
+    }); 
   };
 
+  /**
+   * Permet de se de-loguer
+   */
   signOut = () => {
     localStorage.removeItem('token');
     window.location.reload();
