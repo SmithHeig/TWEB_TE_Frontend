@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import gql from 'graphql-tag';
 import { withApollo } from 'react-apollo';
-
 import { Route } from 'react-router-dom';
 
 const {
@@ -13,11 +12,11 @@ const {
 } = React.createContext();
 
 const mutLogin = gql`
-  mutation ($email: String!, $password: String!){
-    login(email:$email, password:$password){
-      token
-    }
+mutation ($email: String!, $password: String!){
+  login(email:$email, password:$password){
+    token
   }
+}
   `;
 
 class AuthProvider extends React.Component {
@@ -43,14 +42,38 @@ class AuthProvider extends React.Component {
     }
   }
 
-  signIn = ({ userMail, password }) => {
-    this.setState({
-      userID: null,
-      userMail: null,
-      userToken: null,
-      error: '',
-    });
-  }
+
+
+
+  signIn = ({ userEmail, password }) => {
+    const { client } = this.props;
+    console.info("mon")
+    console.info(userEmail);
+    client.mutate({ mutation: mutLogin, variables: { email: userEmail, password: password } })
+      .then(({ data }) => {
+        console.log('got data', data);
+      }).catch((error) => {
+        console.log('there was an error sending the query', error);
+      });
+
+    /*
+    client.mutate({ mutation: mutLogin, variables: { email, password } }).then(
+      (data) => {
+        const errors = null;
+        if (errors) {
+          console.log(errors)
+          this.setState({ error: 'Oups an error occured. Please check the consoleeee' });
+          return;
+        }
+        console.info(data);
+      }
+
+    ).catch(error => {
+      console.log(client);
+      console.log(error);
+      this.setState({ error: 'Oups an error occured. Please check the console' });
+    }); */
+  };
 
   signOut = () => {
     localStorage.removeItem('token');

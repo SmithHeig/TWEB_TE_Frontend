@@ -2,9 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Header from './components/Header';

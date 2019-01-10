@@ -21,12 +21,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 
-require('dotenv').config();
+//require('dotenv').config();
 
-const api = process.env.API_GRAPHQL;
+//const api = process.env.API_GRAPHQL;
 
 const httpLink = createHttpLink({
-  uri: api,
+  uri: 'http://localhost:3030/graphql',
 });
 
 

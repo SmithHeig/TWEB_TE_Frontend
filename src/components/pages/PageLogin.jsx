@@ -63,6 +63,7 @@ class PageLogin extends React.Component {
     this.state = {
       userMail: '',
       password: '',
+      query: null,
     };
   }
 
@@ -78,7 +79,8 @@ class PageLogin extends React.Component {
           const onSubmit = (event) => {
             event.preventDefault();
             const { userMail, password } = this.state;
-
+            console.log("mon mail", userMail);
+            console.log("mon password", password);
             signIn({ userMail, password });
           };
 
