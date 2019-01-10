@@ -80,8 +80,8 @@ class PageLogin extends React.Component {
             event.preventDefault();
             const { userMail, password } = this.state;
             console.log("mon mail", userMail);
-            console.log("mon password", password);
-            signIn({ userMail, password });
+            console.log("mon passwor", password);
+            signIn( userMail, password );
           };
 
 

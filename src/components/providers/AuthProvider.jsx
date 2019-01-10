@@ -45,10 +45,10 @@ class AuthProvider extends React.Component {
 
 
 
-  signIn = ({ userEmail, password }) => {
+  signIn = ( userEmail, password ) => {
     const { client } = this.props;
     console.info("mon")
-    console.info(userEmail);
+    console.info(password);
     client.mutate({ mutation: mutLogin, variables: { email: userEmail, password: password } })
       .then(({ data }) => {
         console.log('got data', data);
